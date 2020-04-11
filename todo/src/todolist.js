@@ -43,17 +43,28 @@ function TodoList  ()  {
       dispatch({ type: "TOGGLE_COMPLETED" }); }}>
      {}</div> */}
 
-        {State.todos.map(item =>(
+        {State.todos.map(todo =>(
      <div 
-     className={`item${State.completed ? " completed" : ""}`}
-     onClick={(e) => {
-       console.log(e.target.classname)
-      dispatch({ type: "TOGGLE_COMPLETED" }); }}>
-     <div>{item.item}</div>
+    >
+     <div className={`item${todo.completed ? " completed" : ""}`}
+     
+     onClick={() => {
+ dispatch({ type: "TOGGLE_COMPLETED", payload: todo.id }); }}>{todo.item}</div>
+
      </div>
   
         ))} 
    
+
+   
+<button
+          onClick={(e) => {
+            e.preventDefault()
+             dispatch({ type: "CLEAR_DONE" });
+          }}
+        >
+          add todo
+        </button>
     </div>
   );
 };
